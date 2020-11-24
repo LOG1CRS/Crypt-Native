@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Crypt Native",
+    "slug": "cryptNative",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "src/assets/static/icon.png",
+    "splash": {
+      "image": "src/assets/static/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "src/assets/static/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "src/assets/static/favicon.png"
+    }
+  }
+}
