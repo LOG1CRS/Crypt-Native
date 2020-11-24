@@ -1,24 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View } from 'react-native';
+import MainStack from './navigation/MainStack';
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <Text>Hello World by CryptNative</Text>
-        <StatusBar style="auto" />
-      </View>
+      <MainStack />
     </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
