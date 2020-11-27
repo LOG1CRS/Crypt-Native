@@ -1,18 +1,32 @@
-import React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import useGetAllCrypts from '../hooks/useGetAllCrypts';
+import CryptItem from '../components/Main/CryptItem';
+import colors from '../assets/style/colors';
 
 const MainScreen = (props) => {
   const { navigation } = props;
 
+  const [loading, setLoading] = useState(true);
+  const crypts = useGetAllCrypts(setLoading);
+
+  const handleCryptPress = (crypt) => {
+    navigation.navigate('Details', { crypt });
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Crypt Native Main Screen</Text>
-      <Pressable
-        onPress={() => navigation.navigate('Details')}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Go to Details</Text>
-      </Pressable>
+      {loading ? (
+        <ActivityIndicator color="#000" size="large" />
+      ) : (
+        <FlatList
+          data={crypts.data}
+          initialNumToRender={9}
+          renderItem={({ item }) => (
+            <CryptItem crypto={item} onPress={() => handleCryptPress(item)} />
+          )}
+        />
+      )}
     </View>
   );
 };
@@ -20,16 +34,10 @@ const MainScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: colors.charade,
+    alignContent: 'center',
     justifyContent: 'center',
-  },
-  button: {
-    marginTop: 20,
-  },
-  buttonText: {
-    color: 'blue',
-    textDecorationLine: 'underline',
+    paddingTop: 5,
   },
 });
 

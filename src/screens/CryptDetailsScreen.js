@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const CryptDetailsScreen = () => {
+const CryptDetailsScreen = (props) => {
+  const { route, navigation } = props;
+  const crypto = route.params.crypt;
+
+  useEffect(() => {
+    navigation.setOptions({ title: `${crypto.name} Details` });
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Cryptocurrency Detail Screen</Text>
+    <View style={styles.details}>
+      <View>
+        <Text>{crypto.name}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  details: {},
 });
 
 export default CryptDetailsScreen;
