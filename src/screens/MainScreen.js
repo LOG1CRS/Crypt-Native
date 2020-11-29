@@ -21,9 +21,13 @@ const MainScreen = (props) => {
       ) : (
         <FlatList
           data={crypts.data}
-          initialNumToRender={9}
+          initialNumToRender={10}
           renderItem={({ item }) => (
-            <CryptItem crypto={item} onPress={() => handleCryptPress(item)} />
+            <CryptItem
+              key={item.key}
+              crypto={item}
+              onPress={() => handleCryptPress(item)}
+            />
           )}
         />
       )}

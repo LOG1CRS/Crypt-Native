@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { memo } from 'react';
 import { Pressable, View, Text, StyleSheet, Image } from 'react-native';
-import colors from '../../assets/style/colors';
-import getCryptoIcon from '../../utils/getCryptoIcon';
 
-const CryptItem = (props) => {
+import colors from '../../assets/style/colors';
+import CryptImage from './CryptImage';
+
+const CryptItem = memo((props) => {
   const { crypto, onPress } = props;
-  const [iconFailure, setIconFailure] = useState(false);
 
   const getArrow = () => {
     if (crypto.percent_change_1h > 0) {
@@ -18,20 +18,7 @@ const CryptItem = (props) => {
   return (
     <Pressable onPress={onPress} style={styles.item}>
       <View style={styles.iconContainer}>
-        <View>
-          {iconFailure ? (
-            <Image
-              style={styles.cryptIcon}
-              source={require('../../assets/static/no-image.png')}
-            />
-          ) : (
-            <Image
-              style={styles.cryptIcon}
-              source={{ uri: getCryptoIcon(crypto.symbol) }}
-              onError={() => setIconFailure(true)}
-            />
-          )}
-        </View>
+        <CryptImage iconStyle={styles.cryptIcon} symbol={crypto.symbol} />
         <View>
           <Text style={styles.symbolText}>{crypto.symbol}</Text>
         </View>
@@ -45,7 +32,7 @@ const CryptItem = (props) => {
       </View>
     </Pressable>
   );
-};
+});
 
 const styles = StyleSheet.create({
   item: {
