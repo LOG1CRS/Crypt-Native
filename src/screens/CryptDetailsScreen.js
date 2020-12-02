@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import colors from '../assets/style/colors';
-import CryptImage from '../components/Main/CryptImage';
+import CryptImage from '../components/Crypt/CryptImage';
 import useGetCryptMarket from '../hooks/useGetCryptMarkets';
 import MarketItem from '../components/Details/MarketItem';
 

@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  TextInput,
-  StyleSheet,
-  Text,
-  Image,
-  ActivityIndicator,
-  FlatList,
-} from 'react-native';
+import { View, TextInput, StyleSheet, Text, Image } from 'react-native';
 import colors from '../assets/style/colors';
 import useGetAllCrypts from '../hooks/useGetAllCrypts';
-import CryptItem from '../components/Main/CryptItem';
+import CryptList from '../components/Crypt/CryptList';
 
 const SearchScreen = (props) => {
   const { navigation } = props;
@@ -28,6 +20,10 @@ const SearchScreen = (props) => {
   const handleSearchInput = (query) => {
     setSearchQuery(query);
 
+    if (loading) {
+      return;
+    }
+
     const coinsFiltered = allCrypts.filter((crypt) => {
       return (
         crypt.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -36,10 +32,6 @@ const SearchScreen = (props) => {
     });
 
     setSearchResults(coinsFiltered);
-  };
-
-  const handleCryptPress = (crypt) => {
-    navigation.navigate('Details', { crypt });
   };
 
   return (
@@ -62,21 +54,11 @@ const SearchScreen = (props) => {
         </View>
       ) : (
         <View style={styles.listContainer}>
-          {loading ? (
-            <ActivityIndicator color="#000" size="large" />
-          ) : (
-            <FlatList
-              data={searchResults}
-              initialNumToRender={10}
-              renderItem={({ item }) => (
-                <CryptItem
-                  key={item.key}
-                  crypto={item}
-                  onPress={() => handleCryptPress(item)}
-                />
-              )}
-            />
-          )}
+          <CryptList
+            loading={loading}
+            data={searchResults}
+            navigation={navigation}
+          />
         </View>
       )}
     </View>
@@ -122,6 +104,8 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
     paddingTop: 5,
   },
 });
