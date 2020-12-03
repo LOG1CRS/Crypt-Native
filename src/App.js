@@ -34,27 +34,27 @@ const App = () => {
           name="Feed"
           component={MainStack}
           options={{
-            tabBarIcon: ({ size, color }) => {
-              return <Ionicons name="ios-cash" size={size} color={color} />;
-            },
+            tabBarIcon: ({ size, color }) => (
+              <Ionicons name="ios-cash" size={size} color={color} />
+            ),
           }}
         />
         <Tabs.Screen
           name="Search"
           component={SearchStack}
           options={{
-            tabBarIcon: ({ size, color }) => {
-              return <Ionicons name="ios-search" size={size} color={color} />;
-            },
+            tabBarIcon: ({ size, color }) => (
+              <Ionicons name="ios-search" size={size} color={color} />
+            ),
           }}
         />
         <Tabs.Screen
           name="Favorites"
           component={FavoritesStack}
           options={{
-            tabBarIcon: ({ size, color }) => {
-              return <Ionicons name="ios-heart" size={size} color={color} />;
-            },
+            tabBarIcon: ({ size, color }) => (
+              <Ionicons name="ios-heart" size={size} color={color} />
+            ),
           }}
         />
       </Tabs.Navigator>
