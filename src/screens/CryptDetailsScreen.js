@@ -11,6 +11,7 @@ import colors from '../assets/style/colors';
 import CryptImage from '../components/Crypt/CryptImage';
 import useGetCryptMarket from '../hooks/useGetCryptMarkets';
 import MarketItem from '../components/Details/MarketItem';
+import SaveButton from '../components/Details/SaveButton';
 
 const CryptDetailsScreen = (props) => {
   const { route, navigation } = props;
@@ -19,7 +20,10 @@ const CryptDetailsScreen = (props) => {
   const markets = useGetCryptMarket(setLoading, crypt.id);
 
   useEffect(() => {
-    navigation.setOptions({ title: `${crypt.name} Details` });
+    navigation.setOptions({
+      title: `${crypt.name} Details`,
+      headerRight: () => <SaveButton crypt={crypt} />,
+    });
   }, []);
 
   const getSections = (crypt) => {

@@ -4,6 +4,7 @@ import colors from '../assets/style/colors';
 
 import MainScreen from '../screens/MainScreen';
 import CryptDetailsScreen from '../screens/CryptDetailsScreen';
+import SaveButton from '../components/Details/SaveButton';
 
 const Stack = createStackNavigator();
 
@@ -23,11 +24,7 @@ const MainStack = () => {
         component={MainScreen}
         options={{ title: 'Cryptocurrencies' }}
       />
-      <Stack.Screen
-        name="Details"
-        component={CryptDetailsScreen}
-        options={{ title: 'Crypto Details' }}
-      />
+      <Stack.Screen name="Details" component={CryptDetailsScreen} />
     </Stack.Navigator>
   );
 };
