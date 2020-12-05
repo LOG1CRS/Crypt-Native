@@ -1,17 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import colors from '../assets/style/colors';
+import CryptList from '../components/Crypt/CryptList';
+import { getAllKeys, multiGetItem } from '../utils/storage';
 
-const FavoriteScreen = () => {
+const FavoriteScreen = (props) => {
+  const { navigation } = props;
+
+  const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState(false);
+  const [favoriteCrypts, setFavoriteCrypts] = useState([]);
+
+  useEffect(() => {
+    getFavorites();
+  });
+
+  const getFavorites = async () => {
+    try {
+      const allKeys = await getAllKeys();
+      const favoritesKeys = allKeys.filter((key) => key.includes('favorite-'));
+
+      if (favoritesKeys.length === 0) {
+        setFavorites(false);
+        return;
+      } else {
+        setFavorites(true);
+      }
+
+      const cryptsData = await multiGetItem(favoritesKeys);
+      const favCrypts = cryptsData.map((fav) => JSON.parse(fav[1]));
+
+      setFavoriteCrypts(favCrypts);
+      setLoading(false);
+    } catch (err) {
+      console.log('Ger Favorites: ', err);
+    }
+  };
+
   return (
     <View style={styles.favoriteScreen}>
-      <View style={styles.messageContainer}>
-        <Image
-          style={styles.messageImage}
-          source={require('../assets/static/no-favorites.png')}
+      {favorites ? (
+        <CryptList
+          loading={loading}
+          data={favoriteCrypts}
+          navigation={navigation}
         />
-        <Text style={styles.messageText}>You don't have favorites yet</Text>
-      </View>
+      ) : (
+        <View style={styles.messageContainer}>
+          <Image
+            style={styles.messageImage}
+            source={require('../assets/static/no-favorites.png')}
+          />
+          <Text style={styles.messageText}>You don't have favorites yet</Text>
+        </View>
+      )}
     </View>
   );
 };
