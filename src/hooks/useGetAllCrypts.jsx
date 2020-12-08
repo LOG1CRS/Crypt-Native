@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addCryptsFromAPI } from '../redux/actions/cryptsListAction';
 
-const useGetAllCrypts = (setLoading) => {
-  const [crypts, setCrypts] = useState({});
+const useGetAllCrypts = () => {
+  const dispatch = useDispatch();
   const source = axios.CancelToken.source();
 
   useEffect(() => {
@@ -17,14 +19,11 @@ const useGetAllCrypts = (setLoading) => {
       const res = await axios.get('https://api.coinlore.net/api/tickers/', {
         cancelToken: source.token,
       });
-      setCrypts(res.data);
-      setLoading(false);
+      dispatch(addCryptsFromAPI(res.data.data));
     } catch (err) {
       console.log(err);
     }
   };
-
-  return crypts;
 };
 
 export default useGetAllCrypts;

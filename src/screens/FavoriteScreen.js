@@ -7,7 +7,6 @@ import { getAllKeys, multiGetItem } from '../utils/storage';
 const FavoriteScreen = (props) => {
   const { navigation } = props;
 
-  const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState(false);
   const [favoriteCrypts, setFavoriteCrypts] = useState([]);
 
@@ -40,11 +39,12 @@ const FavoriteScreen = (props) => {
   return (
     <View style={styles.favoriteScreen}>
       {favorites ? (
-        <CryptList
-          loading={loading}
-          data={favoriteCrypts}
-          navigation={navigation}
-        />
+        // <CryptList
+        //   // loading={loading}
+        //   // data={favoriteCrypts}
+        //   navigation={navigation}
+        // />
+        <View></View>
       ) : (
         <View style={styles.messageContainer}>
           <Image

@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, Text, Image } from 'react-native';
+import { useSelector } from 'react-redux';
 import colors from '../assets/style/colors';
-import useGetAllCrypts from '../hooks/useGetAllCrypts';
 import CryptList from '../components/Crypt/CryptList';
 
 const SearchScreen = (props) => {
   const { navigation } = props;
 
-  const [loading, setLoading] = useState(true);
-  const crypts = useGetAllCrypts(setLoading);
+  const crypts = useSelector((state) => state.crypts);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [allCrypts, setAllCrypts] = useState([]);
 
   useEffect(() => {
-    setAllCrypts(crypts.data);
-  }, [loading]);
+    setAllCrypts(crypts);
+  }, [crypts]);
 
   const handleSearchInput = (query) => {
     setSearchQuery(query);
 
-    if (loading) {
+    if (crypts.length === 0) {
       return;
     }
 
@@ -53,13 +52,21 @@ const SearchScreen = (props) => {
           <Text style={styles.messageText}>Type your search</Text>
         </View>
       ) : (
-        <View style={styles.listContainer}>
-          <CryptList
-            loading={loading}
-            data={searchResults}
-            navigation={navigation}
-          />
-        </View>
+        <>
+          {searchResults.length === 0 ? (
+            <View style={styles.messageContainer}>
+              <Image
+                style={styles.messageImage}
+                source={require('../assets/static/not-found.png')}
+              />
+              <Text style={styles.messageText}>Crypto not found</Text>
+            </View>
+          ) : (
+            <View style={styles.listContainer}>
+              <CryptList data={searchResults} navigation={navigation} />
+            </View>
+          )}
+        </>
       )}
     </View>
   );

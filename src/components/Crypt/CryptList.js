@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, ActivityIndicator, FlatList } from 'react-native';
+import { ActivityIndicator, FlatList } from 'react-native';
 import CryptItem from './CryptItem';
 
 const CryptList = (props) => {
-  const { loading, data, navigation } = props;
+  const { navigation, data } = props;
 
   const handleCryptPress = (crypt) => {
     navigation.navigate('Details', { crypt });
@@ -11,7 +11,7 @@ const CryptList = (props) => {
 
   return (
     <>
-      {loading ? (
+      {data.length === 0 ? (
         <ActivityIndicator color="#000" size="large" />
       ) : (
         <FlatList
