@@ -1,54 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
-import { saveItem, removeItem, getItem } from '../../utils/storage';
+import {
+  addFavoriteAction,
+  removeFavoriteAction,
+} from '../../redux/actions/favoritesAction';
 
 const SaveButton = (props) => {
   const { crypt } = props;
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.favorites);
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    getFavorites();
+    setInitialState();
   }, []);
 
-  const saveCrypt = async (key) => {
-    const cryptToSave = JSON.stringify(crypt);
-    const stored = await saveItem(key, cryptToSave);
-
-    if (stored) {
-      console.log('stored', stored);
+  const setInitialState = () => {
+    const currentCryptFavorite = favorites.find((item) => item.id === crypt.id);
+    if (currentCryptFavorite) {
       setIsSaved(true);
     }
   };
 
-  const removeCrypt = async (key) => {
-    const removed = await removeItem(key);
-
-    if (removed) {
-      console.log('removed', removed);
-      setIsSaved(false);
-    }
+  const saveCrypt = () => {
+    dispatch(addFavoriteAction(crypt));
+    setIsSaved(true);
   };
 
-  const getFavorites = async () => {
-    const key = `favorite-${crypt.id}`;
-    try {
-      const favorites = await getItem(key);
-
-      if (favorites !== null) {
-        setIsSaved(true);
-      }
-    } catch (err) {
-      console.log('Get favorites: ', err);
-    }
+  const removeCrypt = () => {
+    dispatch(removeFavoriteAction(crypt.id));
+    setIsSaved(false);
   };
 
   const handleSaveButton = () => {
-    const key = `favorite-${crypt.id}`;
     if (!isSaved) {
-      saveCrypt(key);
+      saveCrypt();
     } else {
-      removeCrypt(key);
+      removeCrypt();
     }
   };
 

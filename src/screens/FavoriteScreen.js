@@ -1,50 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { useSelector } from 'react-redux';
 import colors from '../assets/style/colors';
 import CryptList from '../components/Crypt/CryptList';
-import { getAllKeys, multiGetItem } from '../utils/storage';
 
 const FavoriteScreen = (props) => {
   const { navigation } = props;
 
-  const [favorites, setFavorites] = useState(false);
-  const [favoriteCrypts, setFavoriteCrypts] = useState([]);
-
-  useEffect(() => {
-    getFavorites();
-  });
-
-  const getFavorites = async () => {
-    try {
-      const allKeys = await getAllKeys();
-      const favoritesKeys = allKeys.filter((key) => key.includes('favorite-'));
-
-      if (favoritesKeys.length === 0) {
-        setFavorites(false);
-        return;
-      } else {
-        setFavorites(true);
-      }
-
-      const cryptsData = await multiGetItem(favoritesKeys);
-      const favCrypts = cryptsData.map((fav) => JSON.parse(fav[1]));
-
-      setFavoriteCrypts(favCrypts);
-      setLoading(false);
-    } catch (err) {
-      console.log('Ger Favorites: ', err);
-    }
-  };
+  const favorites = useSelector((state) => state.favorites);
 
   return (
     <View style={styles.favoriteScreen}>
-      {favorites ? (
-        // <CryptList
-        //   // loading={loading}
-        //   // data={favoriteCrypts}
-        //   navigation={navigation}
-        // />
-        <View></View>
+      {favorites.length !== 0 ? (
+        <CryptList data={favorites} navigation={navigation} />
       ) : (
         <View style={styles.messageContainer}>
           <Image
