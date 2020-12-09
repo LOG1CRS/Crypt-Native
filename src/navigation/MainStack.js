@@ -4,7 +4,6 @@ import colors from '../assets/style/colors';
 
 import MainScreen from '../screens/MainScreen';
 import CryptDetailsScreen from '../screens/CryptDetailsScreen';
-import SaveButton from '../components/Details/SaveButton';
 
 const Stack = createStackNavigator();
 

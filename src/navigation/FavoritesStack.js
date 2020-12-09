@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import colors from '../assets/style/colors';
 
 import FavoriteScreen from '../screens/FavoriteScreen';
+import CryptDetailsScreen from '../screens/CryptDetailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const FavoritesStack = () => {
         component={FavoriteScreen}
         options={{ title: 'Favorites' }}
       />
+      <Stack.Screen name="Details" component={CryptDetailsScreen} />
     </Stack.Navigator>
   );
 };

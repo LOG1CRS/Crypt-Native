@@ -4,6 +4,7 @@ import { TextInput } from 'react-native';
 import colors from '../assets/style/colors';
 
 import SearchScreen from '../screens/SearchScreen';
+import CryptDetailsScreen from '../screens/CryptDetailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const SearchStack = () => {
           title: 'Search',
         }}
       />
+      <Stack.Screen name="Details" component={CryptDetailsScreen} />
     </Stack.Navigator>
   );
 };
