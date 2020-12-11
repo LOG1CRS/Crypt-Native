@@ -5,6 +5,12 @@ Crypt Native helps everyone to track cryptocurrencies, showing data about each c
 
 ## Project Media
 
+<img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-1.jpg" width="150px">
+<img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-2.jpg" width="150px">
+<img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-3.jpg" width="150px">
+<img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-4.jpg" width="150px">
+<img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-5.jpg" width="150px">
+
 ## Getting Started
 
 Follow the steps below to run the project locally.
