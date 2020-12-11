@@ -5,12 +5,12 @@ Crypt Native helps everyone to track cryptocurrencies, showing data about each c
 
 ## Project Media
 
-<div style="display: flex, width: 100%">
-  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-1.jpg" width="150px">
-  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-2.jpg" width="150px">
-  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-3.jpg" width="150px">
-  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-4.jpg" width="150px">
-  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-5.jpg" width="150px">
+<div style="display: flex, width: 100%, justify-content: space-between">
+  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-1.jpg" width="160px">
+  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-2.jpg" width="160px">
+  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-3.jpg" width="160px">
+  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-4.jpg" width="160px">
+  <img src="https://github.com/LOG1CRS/Crypt-Native/blob/main/src/assets/static/example-5.jpg" width="160px">
 </div>
 
 
