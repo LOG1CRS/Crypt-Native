@@ -13,6 +13,9 @@ export const updateFavoritesCrypts = async (crypts) => {
 export const getFavoritesCrypts = async () => {
   try {
     const cryptsString = await AsyncStorage.getItem('favorites');
+    if (cryptsString === null) {
+      return [];
+    }
     const crypts = JSON.parse(cryptsString);
     return crypts;
   } catch (err) {
